@@ -197,6 +197,46 @@ python tools/make_icon.py   # assets/lumen.ico from the same geometry as src/ico
 python tools/make_psd.py    # test-images/artwork.psd, written independently of the reader
 ```
 
+## AI Used
+The entire project was created using DeepSeek V4.1 Flash (Max). Only the final publishing step was performed by a human.
+
+<details>
+  <summary>Original Prompts</summary>
+
+  ### English Version (translated)
+  ```
+Create an image viewer using the Rust programming language and the `egui` library (https://github.com/emilk/egui). You may choose any name you like for the application.
+Requirements:
+- Startup time must be under 0.5 seconds (500ms).
+- Include essential image-viewing features, such as zooming and navigating between images (within the same folder).
+- Ensure the application is ready to use out-of-the-box (minimal initial setup required).
+- Include a settings page.
+- Allow the application to be set as the default image viewer.
+- Support language switching (English and Chinese; the application should detect the system language upon launch).
+- Automatically switch between light and dark themes based on system settings (with an option for users to manually override this in the settings).
+- Allow users to export and import configuration files.
+All code comments must be in English and written to be easily understood and modified by others. Ensure the project is free of errors and that all features function correctly. Any background tasks should be handled automatically.
+These are the core requirements; you are welcome to add extra features (please document any additional functionality you implement). The entire GUI must be built using the `egui` library. Please create a brand-new project—do not use or modify any existing projects. Ensure that none of the required features necessitate administrator privileges (if a folder requires such permissions, the application should prompt the user accordingly). The final build should be a single, portable executable (EXE) file. The software must be error-free and fully functional, and no terminal window should appear while the application is running. When finished, please compile the project using `cargo build --release`.
+  ```
+
+  ### Original Prompt (Chinese)
+  ```
+用Rust语言和egui (https://github.com/emilk/egui) 制作这一款照片查看器（Image Viewer）。名字你自己随便起。
+要求：
+- 启动时间不要超过0.5秒 (500ms)
+- 确保基本的照片查看功能，例如缩放，切换图片（在同一文件夹内）等等
+- 确保可以开箱即用（不需要过多的基本设置）
+- 包括设置页面
+- 允许设置默认照片查看器
+- 英文，中文和其他的语言切换（你目前只需要做英文和中文的语言就行了。默认打开的时候需要检测系统的语言）
+- 需要根据系统的检测浅色和深色主题中切换（允许用户在设置中手动更改）
+- 允许用户导出或导入设置文件
+在代码中所有的注释需要用英文，并让其他人可以简单易读和修改。还有确保整个项目不会有任何错误，并且所有功能可以正常运行。每个任务需要确保能在背景自动完成运行。
+以上这些是软件的基本要求，你可以自己添加一些额外的功能（完成的时候，你需要描述出来你加了什么功能）。你需要使用egui library创建整个应用的GUI。请创建一个全新的项目，请勿使用或修改以前的旧项目。并且确保以上的所有功能都不需要管理员权限（如果文件夹需要管理员的权限的时候，可以向用户申请）。编译出来的需要是单个携带版EXE文件。确保软件不会出现任何错误并且所有功能需要运作并且正常，还有不要出现终端在运行的时候。完成的时候请运行`cargo build --release`进行编译。
+  ```
+  
+</details>
+
 ## Licence
 
 MIT — see [LICENSE](LICENSE).
