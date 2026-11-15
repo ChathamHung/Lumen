@@ -15,8 +15,9 @@ screen in about a fifth of a second.
 - **It is one file.** A single ~15 MB `lumen.exe` with a statically linked C runtime. Copy it
   anywhere, including a USB stick — put an empty `lumen.portable` file next to it and the
   settings travel with it.
-- **It reads what you actually have.** 16 raster formats, SVG and PSD, plus animated GIF and
-  APNG — without shipping libjpeg, librsvg or any other system library.
+- **It reads what you actually have.** 15 image formats — from JPEG and PNG to OpenEXR, DDS and
+  QOI — plus SVG and PSD, and animated GIF and APNG. All of it without shipping libjpeg,
+  librsvg or any other system library.
 - **It gets out of the way.** Flat theme-coloured background by default, no toolbars floating
   over the picture, and the panels you do not need can be hidden.
 
