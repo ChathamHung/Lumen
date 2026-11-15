@@ -1,0 +1,18 @@
+# Build output
+/target
+
+# Screenshots written by `cargo test`; the curated ones live in docs/
+/shots
+
+# Logs and crash dumps
+*.log
+*.dmp
+
+# Editor and OS noise
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# The portable-mode marker is per machine, not part of the project
+lumen.portable

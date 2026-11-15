@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test fixture: exercises gradients, shapes, transparency and text. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="60%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#93C5FD"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF7ED"/>
+      <stop offset="70%" stop-color="#FDBA74"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="480" height="360" fill="url(#sky)"/>
+  <circle cx="360" cy="96" r="54" fill="url(#sun)"/>
+
+  <path d="M0 300 L120 150 L220 300 Z" fill="#0F172A" opacity="0.85"/>
+  <path d="M150 300 L280 120 L420 300 Z" fill="#1E293B" opacity="0.9"/>
+  <path d="M300 300 L400 200 L480 300 Z" fill="#334155" opacity="0.8"/>
+  <rect y="300" width="480" height="60" fill="#0B1220"/>
+
+  <text x="24" y="340" font-family="Segoe UI" font-size="22" fill="#E2E8F0">Lumen · SVG</text>
+</svg>

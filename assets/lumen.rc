@@ -1,0 +1,31 @@
+// Resources embedded into lumen.exe: the application icon and the version
+// information shown on the Details tab of the file's properties.
+//
+// Compiled by build.rs with rc.exe. The icon has resource id 1, which is the
+// id Windows looks for when it needs "the" icon of an executable.
+
+1 ICON "lumen.ico"
+
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEOS 0x40004
+FILETYPE 0x1
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "FileDescription", "Lumen - a fast, portable photo viewer"
+            VALUE "FileVersion", "1.0.0"
+            VALUE "InternalName", "lumen"
+            VALUE "OriginalFilename", "lumen.exe"
+            VALUE "ProductName", "Lumen"
+            VALUE "ProductVersion", "1.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

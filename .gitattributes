@@ -1,0 +1,10 @@
+# Keep the repository text in LF so the sources are identical on every platform,
+# and make sure the binary fixtures are never converted.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.psd binary
+*.apng binary
+*.gif binary

@@ -1,0 +1,110 @@
+[package]
+name = "lumen"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Lumen - a fast, portable photo viewer built with Rust and egui"
+license = "MIT"
+authors = ["Chatham Hung"]
+repository = "https://github.com/ChathamHung/Lumen"
+homepage = "https://github.com/ChathamHung/Lumen"
+readme = "README.md"
+keywords = ["image-viewer", "photo", "egui", "gui", "viewer"]
+categories = ["multimedia::images", "gui"]
+
+[dependencies]
+# egui/eframe. OpenGL (glow) is the default backend because it starts in well
+# under the 500 ms budget: creating a GL context costs a few milliseconds,
+# while initialising DirectX 12 through wgpu takes several hundred. The wgpu
+# backend is compiled in as well so that a machine without working OpenGL 3.0
+# can still run: Lumen retries with it automatically when the GL window cannot
+# be created, and LUMEN_RENDERER=wgpu forces it.
+eframe = { version = "0.37", default-features = false, features = [
+    "glow",
+    "wgpu",
+    "default_fonts",
+    "links",
+] }
+egui = "0.37"
+
+# Image decoding. Only the pure-Rust formats are enabled to keep the binary
+# self-contained (no libavif/libjpeg system libraries).
+image = { version = "0.25", default-features = false, features = [
+    "bmp",
+    "dds",
+    "exr",
+    "ff",
+    "gif",
+    "hdr",
+    "ico",
+    "jpeg",
+    "png",
+    "pnm",
+    "qoi",
+    "tga",
+    "tiff",
+    "webp",
+] }
+
+# Reads the EXIF orientation tag so phone photos are not shown sideways.
+kamadak-exif = "0.6"
+
+# APNG decoding. The `image` crate only decodes the first frame of an animated
+# PNG, while this one exposes every frame, so the frame compositing in
+# image_loader.rs is done by hand. Same major version as `image` uses.
+png = "0.18"
+
+# SVG rendering. Pure Rust, so the executable stays self-contained: no
+# librsvg, no cairo. `system-fonts` lets SVG text use installed fonts; the
+# font database is only filled the first time a file with text is opened, so
+# startup is unaffected.
+resvg = { version = "0.50", default-features = false, features = [
+    "text",
+    "system-fonts",
+    "raster-images",
+    "svgz",
+] }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+dirs = "6"
+sys-locale = "0.3"
+rfd = "0.18"
+# Only used to route eframe/winit diagnostics into the log file when the
+# LUMEN_LOG environment variable is set.
+log = "0.4"
+
+[target.'cfg(windows)'.dependencies]
+# Per-user registry access for the "default photo viewer" registration.
+# Everything is written under HKEY_CURRENT_USER, so no administrator rights
+# are ever required.
+winreg = "0.56"
+
+# The build script embeds the icon with rc.exe from the Windows SDK. That needs
+# no crate: build.rs locates the compiler itself.
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+# Decoding a large photo is roughly twenty times slower without optimisation,
+# which makes `cargo test` (used for the UI snapshots) crawl. Optimising only
+# the decoding crates keeps normal debug builds fast while making image work
+# feel like the release build.
+[profile.dev.package.image]
+opt-level = 3
+
+[profile.dev.package.zune-jpeg]
+opt-level = 3
+
+[profile.dev.package.png]
+opt-level = 3
+
+[dev-dependencies]
+# Renders the real UI into an image buffer, so `cargo test` can produce the
+# screenshots in `shots/` without opening a window. Test-only: it is never
+# linked into the shipped executable.
+egui_kittest = { version = "0.37", features = ["wgpu", "eframe"] }
